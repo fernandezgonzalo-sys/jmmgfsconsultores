@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JMM&GFS Consultores | Asesoramiento Contable, Impositivo y Financiero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243258;
+    --navy-dark: #111b33;
+    --gold: #b8953a;
+    --gold-light: #d4aa55;
+    --gold-pale: #f0e4c3;
+    --gold-bg: #fdf8ef;
+    --cream: #faf8f3;
+    --gray-muted: #6b7280;
+    --gray-light: #f4f4f0;
+    --white: #ffffff;
+    --text-dark: #0f172a;
+    --text-mid: #374151;
+    --text-muted: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,39,68,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,149,58,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-text span { color: var(--gold-light); }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-size: 0.9rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy-dark) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 2rem 60px;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 60px,
+      rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 60px,
+      rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px
+    );
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(184,149,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(184,149,58,0.15);
+    border: 1px solid rgba(184,149,58,0.35);
+    color: var(--gold-light);
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 600; line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { color: var(--gold-light); font-style: italic; }
+  .hero-subtitle {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 2.5rem; max-width: 480px;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 400;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--gold-light); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem; color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-card-stack {
+    position: relative; width: 380px; height: 420px;
+  }
+  .hcard {
+    position: absolute;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,149,58,0.25);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .hcard-main {
+    top: 40px; left: 0; right: 0;
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(184,149,58,0.4);
+  }
+  .hcard-back {
+    top: 0; left: 20px; right: -20px;
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(184,149,58,0.15);
+    z-index: -1;
+  }
+  .hcard-icon {
+    width: 44px; height: 44px;
+    background: rgba(184,149,58,0.2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .hcard h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .hcard p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5;
+  }
+  .hcard-metrics {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-top: 1.2rem;
+  }
+  .hcard-metric {
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px; padding: 10px 12px;
+  }
+  .hcard-metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--gold-light);
+  }
+  .hcard-metric-lbl {
+    font-size: 0.7rem; color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 600; line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .section-lead {
+    font-size: 1rem; color: var(--text-muted);
+    line-height: 1.75; max-width: 560px;
+  }
+
+  /* SERVICIOS */
+  .services { background: var(--cream); }
+  .services-header {
+    text-align: center; margin-bottom: 4rem;
+  }
+  .services-header .section-lead { margin: 0 auto; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border: 1px solid rgba(26,39,68,0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover {
+    border-color: rgba(184,149,58,0.3);
+    box-shadow: 0 8px 30px rgba(26,39,68,0.08);
+    transform: translateY(-3px);
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-bg);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.25rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--navy); margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    font-size: 0.9rem; color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .service-list {
+    list-style: none; margin-top: 1rem;
+  }
+  .service-list li {
+    font-size: 0.85rem; color: var(--text-mid);
+    padding: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .service-list li::before {
+    content: ''; display: block;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* NOSOTROS */
+  .about { background: var(--white); }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .about-text .section-lead { margin-bottom: 2rem; }
+  .about-values {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .value-item {
+    padding: 1.2rem;
+    border: 1px solid rgba(26,39,68,0.08);
+    border-radius: 8px;
+    background: var(--cream);
+  }
+  .value-item h4 {
+    font-weight: 500; font-size: 0.9rem;
+    color: var(--navy); margin-bottom: 4px;
+  }
+  .value-item p {
+    font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;
+  }
+  .team-cards {
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .team-card {
+    background: var(--navy);
+    border-radius: 12px; padding: 1.75rem;
+    position: relative; overflow: hidden;
+  }
+  .team-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gold);
+  }
+  .team-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--white); margin-bottom: 4px;
+  }
+  .team-card-role {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--gold-light);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .team-card-desc {
+    font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6;
+  }
+
+  /* CLIENTES */
+  .clients { background: var(--navy); padding: 5rem 2rem; }
+  .clients-header { text-align: center; margin-bottom: 3rem; }
+  .clients-header .section-title { color: var(--white); }
+  .clients-header .section-lead { color: rgba(255,255,255,0.55); margin: 0 auto; }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .client-type {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,149,58,0.2);
+    border-radius: 10px; padding: 1.5rem;
+    text-align: center;
+  }
+  .client-type-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .client-type h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .client-type p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.5;
+  }
+
+  /* POR QUÉ ELEGIRNOS */
+  .why { background: var(--gray-light); }
+  .why-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+  .why-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+    min-width: 2rem;
+  }
+  .why-content h4 {
+    font-weight: 500; font-size: 1rem; color: var(--navy); margin-bottom: 4px;
+  }
+  .why-content p {
+    font-size: 0.87rem; color: var(--text-muted); line-height: 1.6;
+  }
+  .why-visual {
+    background: var(--navy);
+    border-radius: 16px; padding: 2.5rem;
+  }
+  .why-visual-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--white);
+    margin-bottom: 1.75rem;
+  }
+  .why-process { display: flex; flex-direction: column; gap: 0; }
+  .process-step {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding-bottom: 1.5rem; position: relative;
+  }
+  .process-step:not(:last-child)::before {
+    content: '';
+    position: absolute; left: 15px; top: 32px; bottom: 0;
+    width: 1px; background: rgba(184,149,58,0.3);
+  }
+  .process-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(184,149,58,0.2);
+    border: 1px solid rgba(184,149,58,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 600; color: var(--gold-light);
+    flex-shrink: 0;
+  }
+  .process-text h5 {
+    font-weight: 500; font-size: 0.92rem; color: var(--white); margin-bottom: 3px;
+  }
+  .process-text p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+  /* CONTACTO */
+  .contact { background: var(--cream); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .contact-info h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 600;
+    color: var(--navy); line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .contact-info h2 em { color: var(--gold); font-style: italic; }
+  .contact-info p {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 2rem;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .contact-item-icon {
+    width: 42px; height: 42px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item-text span {
+    display: block; font-size: 0.75rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .contact-item-text strong {
+    font-size: 0.95rem; color: var(--navy); font-weight: 500;
+  }
+  .contact-form-box {
+    background: var(--white);
+    border: 1px solid rgba(26,39,68,0.1);
+    border-radius: 16px; padding: 2.5rem;
+  }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 500;
+    color: var(--text-mid); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1px solid rgba(26,39,68,0.15);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem; color: var(--text-dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-whatsapp {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--navy);
+    color: var(--white);
+    border: none; cursor: pointer;
+    width: 100%; padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-whatsapp:hover { background: var(--gold); }
+  .btn-whatsapp svg { width: 22px; height: 22px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-dark);
+    padding: 3rem 2rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--white);
+  }
+  .footer-logo span { color: var(--gold-light); }
+  .footer-copy { font-size: 0.82rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none; font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: pulse 2.5s infinite;
+  }
+  .wa-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+  }
+  .wa-float svg { width: 30px; height: 30px; fill: white; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(37,211,102,0.65); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .about-inner, .why-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.25rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .fade-up-2 { animation: fadeUp 0.7s 0.15s ease forwards; opacity: 0; }
+  .fade-up-3 { animation: fadeUp 0.7s 0.3s ease forwards; opacity: 0; }
+  .fade-up-4 { animation: fadeUp 0.7s 0.45s ease forwards; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="data:image/png;base64,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" alt="JMM&GFS Consultores" style="height:52px; width:auto; object-fit:contain;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Consultá ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag fade-up">Consultora en Buenos Aires</div>
+      <h1 class="hero-title fade-up-2">
+        Tu negocio,<br><em>ordenado y</em><br>potenciado.
+      </h1>
+      <p class="hero-subtitle fade-up-3">
+        Asesoramiento contable, impositivo y financiero para PyMEs, emprendedores y profesionales que quieren crecer con claridad.
+      </p>
+      <div class="hero-actions fade-up-4">
+        <a href="https://wa.me/5491161671305?text=Hola%20JMMGFS%2C%20me%20gustar%C3%ADa%20consultar%20sus%20servicios" class="btn-primary" target="_blank">
+          Hablar con un asesor
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      </div>
+      <div class="hero-stats fade-up-4">
+        <div class="stat-item">
+          <div class="stat-num">+100</div>
+          <div class="stat-label">Clientes activos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Especialistas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Compromiso</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hcard hcard-back"></div>
+        <div class="hcard hcard-main">
+          <div class="hcard-icon">📊</div>
+          <h3>Asesoramiento Integral</h3>
+          <p>Contabilidad · Impuestos · Finanzas · Administración</p>
+          <div class="hcard-metrics">
+            <div class="hcard-metric">
+              <div class="hcard-metric-val">ARCA</div>
+              <div class="hcard-metric-lbl">Gestión fiscal</div>
+            </div>
+            <div class="hcard-metric">
+              <div class="hcard-metric-val">IIGG</div>
+              <div class="hcard-metric-lbl">Impuesto ganancias</div>
+            </div>
+            <div class="hcard-metric">
+              <div class="hcard-metric-val">IVA</div>
+              <div class="hcard-metric-lbl">Declaraciones</div>
+            </div>
+            <div class="hcard-metric">
+              <div class="hcard-metric-val">PyME</div>
+              <div class="hcard-metric-lbl">Certificación</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="services-header">
+      <span class="section-tag">Lo que hacemos</span>
+      <h2 class="section-title">Servicios que impulsan<br>tu empresa</h2>
+      <p class="section-lead">Soluciones concretas para que te concentres en hacer crecer tu negocio, mientras nosotros nos ocupamos de los números.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🧾</div>
+        <h3>Monotributo</h3>
+        <p>Gestión integral del monotributo: inscripción, recategorización y todos tus trámites ante ARCA resueltos sin complicaciones.</p>
+        <ul class="service-list">
+          <li>Alta rápida y segura en ARCA</li>
+          <li>Recategorización según normativa vigente</li>
+          <li>Gestión integral de trámites ante ARCA</li>
+          <li>Asesoramiento según normativa vigente</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Creación de Sociedades</h3>
+        <p>Constituimos tu empresa con la figura jurídica adecuada. Te asesoramos en cada paso del proceso societario.</p>
+        <ul class="service-list">
+          <li>Constitución de SRL, SA y SAS</li>
+          <li>Asesoramiento legal societario</li>
+          <li>Estatutos y actas societarias</li>
+          <li>Inscripción en IGJ y ARCA</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧮</div>
+        <h3>Facturación Electrónica</h3>
+        <p>Configuración y emisión correcta de facturas electrónicas para tu negocio, en todos sus formatos y canales.</p>
+        <ul class="service-list">
+          <li>Emisión de facturas electrónicas y notas de crédito</li>
+          <li>Configuración de puntos de venta (Web, App, API)</li>
+          <li>Asesoramiento en categorización ARCA</li>
+          <li>Normativa de facturación vigente</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👷</div>
+        <h3>Liquidación de Sueldos</h3>
+        <p>Gestión de nómina precisa: procesamos sueldos, cargas sociales y toda la documentación laboral con exactitud.</p>
+        <ul class="service-list">
+          <li>Procesamiento de sueldos y cargas sociales</li>
+          <li>Generación de F.931 y recibos de sueldo</li>
+          <li>Asesoramiento laboral y convenios colectivos</li>
+          <li>Altas y bajas de personal ante ARCA</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Balances y Auditoría</h3>
+        <p>Elaboramos estados contables y balances para PyMEs y sociedades, con el respaldo técnico que cada caso requiere.</p>
+        <ul class="service-list">
+          <li>Estados contables para PyMEs y sociedades</li>
+          <li>Balances anuales y trimestrales</li>
+          <li>Auditoría de estados financieros</li>
+          <li>Certificaciones contables</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Impuestos Anuales</h3>
+        <p>Liquidamos tus declaraciones juradas anuales de Ganancias y Bienes Personales con planificación fiscal estratégica.</p>
+        <ul class="service-list">
+          <li>DDJJ Impuesto a las Ganancias</li>
+          <li>DDJJ Bienes Personales</li>
+          <li>Planificación tributaria anual</li>
+          <li>Asesoramiento según normativa ARCA vigente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="section-tag">Quiénes somos</span>
+        <h2 class="section-title">Dos especialistas,<br>una visión integral</h2>
+        <p class="section-lead">Somos una consultora joven y comprometida, formada por un contador y un administrador de empresas. Combinamos rigor técnico con una mirada estratégica para acompañar a nuestros clientes en cada etapa de su negocio.</p>
+        <p class="section-lead" style="margin-top:1rem;">Creemos que el asesoramiento de calidad no es exclusivo de las grandes empresas: cada PyME, emprendedor y profesional merece tener expertos de su lado.</p>
+        <div class="about-values">
+          <div class="value-item">
+            <h4>🎯 Precisión</h4>
+            <p>Cero margen de error en cada declaración y trámite.</p>
+          </div>
+          <div class="value-item">
+            <h4>🤝 Cercanía</h4>
+            <p>Siempre disponibles y con respuestas claras.</p>
+          </div>
+          <div class="value-item">
+            <h4>⚡ Proactividad</h4>
+            <p>Te avisamos antes de que aparezca el problema.</p>
+          </div>
+          <div class="value-item">
+            <h4>🔒 Confianza</h4>
+            <p>Tu información siempre segura y confidencial.</p>
+          </div>
+        </div>
+      </div>
+      <div class="team-cards">
+        <div class="team-card">
+          <div class="team-card-name">Juan Manuel Montagna</div>
+          <div class="team-card-role">Contador Público · Socio</div>
+          <p class="team-card-desc">Especialista en impuestos, contabilidad y cumplimiento fiscal. Acompañando a empresas y profesionales a mantener sus obligaciones en orden y optimizar su carga tributaria.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-card-name">Gonzalo Fernández Somoza</div>
+          <div class="team-card-role">Administrador de Empresas · Socio</div>
+          <p class="team-card-desc">Enfocado en la gestión, procesos y el crecimiento estratégico de los clientes. Aporta la visión de negocio para que cada decisión tenga respaldo en números reales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section class="clients" id="clientes">
+  <div class="container">
+    <div class="clients-header">
+      <span class="section-tag" style="color:var(--gold-light)">A quién ayudamos</span>
+      <h2 class="section-title">Trabajamos con todo<br>tipo de negocios</h2>
+      <p class="section-lead">Desde el emprendedor que arranca hasta la empresa consolidada que quiere escalar.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client-type">
+        <div class="client-type-icon">🏪</div>
+        <h4>PyMEs</h4>
+        <p>Empresas en crecimiento que necesitan estructura y orden contable-impositivo.</p>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🙋</div>
+        <h4>Monotributistas</h4>
+        <p>Profesionales independientes y cuentapropistas que quieren cumplir sin complicaciones.</p>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🚀</div>
+        <h4>Emprendedores</h4>
+        <p>Personas que arrancan un proyecto y necesitan la estructura correcta desde el inicio.</p>
+      </div>
+      <div class="client-type">
+        <div class="client-type-icon">🏭</div>
+        <h4>Empresas establecidas</h4>
+        <p>Organizaciones que buscan optimizar su gestión financiera y reducir su carga impositiva.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section class="why" id="por-que">
+  <div class="container">
+    <div class="why-inner">
+      <div>
+        <span class="section-tag">Por qué elegirnos</span>
+        <h2 class="section-title">Lo que nos hace diferentes</h2>
+        <ul class="why-list" style="margin-top:2rem;">
+          <li class="why-item">
+            <div class="why-num">01</div>
+            <div class="why-content">
+              <h4>Atención personalizada y directa</h4>
+              <p>No somos un estudio gigante. Hablás directo con el profesional que lleva tu cuenta, sin intermediarios.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">02</div>
+            <div class="why-content">
+              <h4>Dos perspectivas en una sola firma</h4>
+              <p>Contador + Administrador trabajando juntos para darte una visión completa de tu negocio.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">03</div>
+            <div class="why-content">
+              <h4>Precios transparentes y justos</h4>
+              <p>Honorarios claros, sin letras chicas. Sabés exactamente qué recibís a cambio de lo que pagás.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">04</div>
+            <div class="why-content">
+              <h4>Siempre al día con la normativa</h4>
+              <p>Argentina cambia las reglas constantemente. Nosotros las seguimos de cerca para que vos no tengas que hacerlo.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div class="why-visual-title">¿Cómo trabajamos?</div>
+        <div class="why-process">
+          <div class="process-step">
+            <div class="process-dot">1</div>
+            <div class="process-text">
+              <h5>Primera consulta gratuita</h5>
+              <p>Entendemos tu situación actual y lo que necesitás sin compromiso.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-dot">2</div>
+            <div class="process-text">
+              <h5>Diagnóstico y propuesta</h5>
+              <p>Te presentamos un plan de trabajo adaptado a tu realidad y presupuesto.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-dot">3</div>
+            <div class="process-text">
+              <h5>Puesta en marcha</h5>
+              <p>Nos ponemos a trabajar de inmediato, con comunicación constante.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-dot">4</div>
+            <div class="process-text">
+              <h5>Seguimiento continuo</h5>
+              <p>Monitoreo permanente y disponibilidad para cualquier consulta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <span class="section-tag">Contacto</span>
+        <h2>Hablemos de <em>tu negocio</em></h2>
+        <p>Primera consulta sin cargo. Contanos tu situación y te decimos exactamente cómo podemos ayudarte.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div class="contact-item-text">
+              <span>WhatsApp</span>
+              <strong>+54 9 11 6167-1305</strong>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📸</div>
+            <div class="contact-item-text">
+              <span>Instagram</span>
+              <strong>@jmmgfsconsultores</strong>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <span>Ubicación</span>
+              <strong>Buenos Aires, Argentina</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-box">
+        <div class="form-title">Envianos tu consulta</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" id="fname" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Empresa / Rubro</label>
+            <input type="text" id="fempresa" placeholder="Tu empresa o actividad">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Teléfono (opcional)</label>
+          <input type="tel" id="ftel" placeholder="+54 9 11...">
+        </div>
+        <div class="form-group">
+          <label>¿Qué necesitás?</label>
+          <select id="fservicio">
+            <option value="">Seleccioná un servicio</option>
+            <option>Asesoramiento contable / impositivo</option>
+            <option>Liquidación de sueldos</option>
+            <option>Asesoramiento financiero</option>
+            <option>Constitución de sociedad</option>
+            <option>Consultoría estratégica</option>
+            <option>Otro / No sé por dónde empezar</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Contanos más (opcional)</label>
+          <textarea id="fmsg" placeholder="Describí brevemente tu situación..."></textarea>
+        </div>
+        <a id="wa-btn" href="#" class="btn-whatsapp" target="_blank">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Enviar consulta por WhatsApp
+        </a>
+        <script>
+          document.getElementById('wa-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            var nombre = document.getElementById('fname').value || 'No indicado';
+            var empresa = document.getElementById('fempresa').value || 'No indicado';
+            var servicio = document.getElementById('fservicio').value || 'No indicado';
+            var msg = document.getElementById('fmsg').value || '';
+            var texto = 'Hola JMMGFS Consultores! Me contacto desde su web.\n\n' +
+              '👤 Nombre: ' + nombre + '\n' +
+              '🏢 Empresa/Rubro: ' + empresa + '\n' +
+              '📋 Servicio: ' + servicio +
+              (msg ? '\n\n💬 Consulta: ' + msg : '');
+            window.open('https://wa.me/5491161671305?text=' + encodeURIComponent(texto), '_blank');
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">JMM<span>&</span>GFS <span style="font-weight:300; color:rgba(255,255,255,0.3); font-size:0.95rem;">Consultores</span></div>
+    <div class="footer-copy">© 2025 JMM&GFS Consultores · Buenos Aires, Argentina</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/jmmgfsconsultores" target="_blank">Instagram</a>
+      <a href="https://wa.me/5491161671305" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/5491161671305?text=Hola%20JMMGFS%2C%20me%20gustar%C3%ADa%20consultar%20sus%20servicios" class="wa-float" target="_blank" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
