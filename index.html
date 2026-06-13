@@ -157,6 +157,22 @@
     .partner-bio { font-size: 13px; line-height: 1.65; color: rgba(235,230,224,.55); }
     .partner-card.accent .partner-bio { color: rgba(255,255,255,.8); }
 
+    /* SECTORES */
+    .sectores-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .sector-item {
+      background: var(--white); padding: 32px 28px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+      position: relative; overflow: hidden; transition: transform .2s;
+    }
+    .sector-item:hover { transform: translateY(-3px); z-index: 1; }
+    .sector-item::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .sector-item:hover::before { transform: scaleX(1); }
+    .sector-icon { width: 44px; height: 44px; background: var(--sand); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--petroleum); transition: background .2s, color .2s; }
+    .sector-item:hover .sector-icon { background: var(--petroleum); color: var(--sand); }
+    .sector-item span { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--petroleum); line-height: 1.3; }
+    @media (max-width: 1100px) { .sectores-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) { .sectores-grid { grid-template-columns: repeat(2, 1fr); } }
+
     /* PROCESO */
     #proceso { background: var(--sand); }
     .proceso-header { margin-bottom: 64px; }
@@ -270,6 +286,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#sectores">Sectores</a></li>
     <li><a href="#quienes">Quiénes somos</a></li>
     <li><a href="#proceso">Proceso</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -282,7 +299,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">GFS JMM &nbsp;·&nbsp; Buenos Aires</p>
     <h1>Decisiones <em>acertadas</em>,<br>negocios que crecen</h1>
-    <p class="hero-sub">Más de una década acompañando a PyMEs en construcción, inmobiliario y servicios profesionales. Organización, compliance y estrategia en un solo equipo.</p>
+    <p class="hero-sub">Más de una década acompañando a empresas en múltiples industrias. Organización, compliance y estrategia en un solo equipo.</p>
     <div class="hero-tags">
       <span class="tag">Compliance</span>
       <span class="tag">ARCA / AFIP</span>
@@ -392,7 +409,7 @@
         </div>
         <div class="feature-item">
           <div class="feature-title">Foco PyME</div>
-          <div class="feature-desc">Construcción, inmobiliario y servicios profesionales</div>
+          <div class="feature-desc">Construcción, inmobiliario, energía, minería, agro, salud, retail y más</div>
         </div>
         <div class="feature-item">
           <div class="feature-title">Presencia local</div>
@@ -421,6 +438,81 @@
         <div class="partner-name">Juan Manuel Montagna</div>
         <div class="partner-bio">Contador Público. Especialista en auditoría, balances, planificación fiscal y compliance para empresas en crecimiento.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores" style="background: var(--sand-light);">
+  <p class="section-eyebrow">Dónde trabajamos</p>
+  <h2 class="section-title">Industrias que<br>acompañamos</h2>
+  <p class="section-body" style="margin-bottom: 56px;">Nuestra experiencia abarca una amplia variedad de sectores. Adaptamos nuestras soluciones a las particularidades regulatorias, operativas y fiscales de cada industria.</p>
+  <div class="sectores-grid">
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <span>Construcción</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span>Inmobiliario</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <span>Energía</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12C12 12 7 9 7 5a5 5 0 0 1 10 0c0 4-5 7-5 7z"/><path d="M8 22h8"/></svg>
+      </div>
+      <span>Minería</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <span>Marketing</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span>Agro</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <span>Comunicación</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </div>
+      <span>Retail</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <span>Salud</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <span>Servicios Profesionales</span>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+      </div>
+      <span>Sector Gubernamental</span>
     </div>
   </div>
 </section>
